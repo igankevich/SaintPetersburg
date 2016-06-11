@@ -1,0 +1,146 @@
+% options
+\newif\if@doRussian
+\newif\if@doEnglish
+\@doRussiantrue
+\@doEnglishfalse
+\DeclareOption{russian}{\@doRussiantrue\@doEnglishfalse}
+\DeclareOption{english}{\@doRussianfalse\@doEnglishtrue}
+\ProcessOptions
+
+% font theme
+\RequirePackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[
+	Script=Cyrillic,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
+\newfontfamily\cyrillicfont[
+	Script=Cyrillic,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
+\newfontfamily\cyrillicfontsf[
+	Script=Cyrillic,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
+\newfontfamily\cyrillicfonttt[
+	Script=Cyrillic,
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold
+]{FiraMono}
+
+% inner theme
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\makeatletter%
+\usebackgroundtemplate{%
+	\ifnum\thepage=1\relax%
+		\hspace{\beamer@leftmargin}%
+		\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,dp=0pt]{background canvas}%
+			\begin{tikzpicture}[remember picture,overlay]
+				\node[anchor=north west] at (current page.north west) {%
+					\hspace*{-2mm}%
+					\if@doRussian%
+						\includegraphics[height=0.2\paperheight]{bloc_rus_l}%
+					\else%
+						\includegraphics[height=0.2\paperheight]{bloc_eng_l}%
+					\fi%
+				};
+				\node[anchor=south east,opacity=0.1] at (current page.south east) {%
+					\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{CoA_Medium}%
+				};
+			\end{tikzpicture}
+    	\end{beamercolorbox}
+	\else%
+		\usebeamercolor[bg]{background canvas}\rule{\paperwidth}{\paperheight}%
+	\fi%
+} 
+\makeatother%
+
+\defbeamertemplate*{title page}{customized}[1][]{
+	\centering
+	\vspace{0.2\textheight}
+	\usebeamerfont{title}\usebeamercolor[fg]{title}
+	\inserttitle\par
+	\vfill
+	\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par
+	\vfill
+	\usebeamerfont{institute}\insertinstitute\par
+	\vfill
+	\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}
+	\insertsubtitle\par
+	\inserttitlegraphic
+	\vfill
+	\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par
+}
+
+% horizontal bar colors
+\definecolor{spbuBar1}{HTML}{aa1d21}
+\definecolor{spbuBar2}{HTML}{93a5a7}
+\definecolor{spbuBar3}{HTML}{051014}
+\definecolor{spbuBar4}{HTML}{93a5a7}
+\definecolor{spbuBar5}{HTML}{aa1d21}
+\definecolor{spbuBar6}{HTML}{93a5a7}
+
+\defbeamertemplate*{frametitle}{spbu}[1][]{
+	\usebeamercolor[fg]{frametitle}%
+	\usebeamerfont{frametitle}%
+	\insertframetitle\par%
+	\ifx\insertframesubtitle\@empty%
+	\else%
+		\usebeamerfont{framesubtitle}%
+		\insertframesubtitle\par%
+	\fi%
+%	\begin{tikzpicture}[x=\paperwidth,y=1mm]
+%		\fill[spbuBar1] (0.000,0) rectangle(0.305,1);
+%		\fill[spbuBar2] (0.305,0) rectangle(0.327,1);
+%		\fill[spbuBar3] (0.327,0) rectangle(0.419,1);
+%		\fill[spbuBar4] (0.419,0) rectangle(0.513,1);
+%		\fill[spbuBar5] (0.513,0) rectangle(0.565,1);
+%		\fill[spbuBar6] (0.565,0) rectangle(1.000,1);
+%	\end{tikzpicture}
+}
+
+\setbeamertemplate{navigation symbols}{}
+\beamertemplatenavigationsymbolsempty
+
+% black-on-white speaker notes
+\setbeamertemplate{note page}{\insertnote}
+
+% color theme
+
+% corporate colors
+\definecolor{spbuTerracotta}{cmyk}{.08,.91,.92,.33}
+\definecolor{spbuGray}{cmyk}{.21,.11,.09,.22}
+
+\definecolor{spbuWhite1}{RGB}{245,246,245}
+\definecolor{spbuWhite2}{RGB}{230,231,230}
+\definecolor{spbuWhite3}{RGB}{217,218,217}
+\definecolor{spbuDarkGray}{HTML}{5F7177}
+
+\setbeamercolor{normal text}{fg=spbuDarkGray,bg=spbuWhite1}
+\setbeamercolor{frametitle}{bg=spbuWhite1,fg=spbuTerracotta}
+\setbeamercolor{title}{bg=spbuWhite1,fg=spbuTerracotta}
+\setbeamercolor{subtitle}{parent=normal text}
+\setbeamercolor{date}{parent=normal text}
+\setbeamercolor{author}{parent=normal text}
+\setbeamercolor{background canvas}{parent=normal text}
+\setbeamercolor{background}{parent=background canvas}
+\setbeamercolor{math text}{fg=spbuDarkGray,bg=spbuWhite1}
+\setbeamercolor{item}{parent=normal text}
+\setbeamercolor{block title}{fg=spbuDarkGray,bg=spbuWhite3}
+\setbeamercolor{block body}{fg=spbuDarkGray,bg=spbuWhite2}
+\setbeamercolor{section in toc}{parent=normal text}
+\setbeamercolor{section page}{parent=frametitle}

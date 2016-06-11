@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cwd=$1
+shift
+
+export TEXINPUTS=:$cwd//:$(dirname $0)//
+export BIBINPUTS=$TEXINPUTS
+export TTFONTS=$TEXINPUTS
+export OPENTYPEFONTS=$TEXINPUTS
+$*
