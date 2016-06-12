@@ -1,0 +1,15 @@
+#!/bin/sh
+
+PACKAGE_NAME=SaintPetersburg
+PREFIX=$MESON_SOURCE_ROOT
+
+set -e
+
+ctanify \
+	--pkgname=$PACKAGE_NAME \
+	$PREFIX/beamerthemeSaintPetersburg.sty \
+	"$PREFIX/fonts/OpenSans-*.ttf=fonts/truetype/public/$PACKAGE_NAME" \
+	"$PREFIX/fonts/FiraMono-*.otf=fonts/opentype/public/$PACKAGE_NAME" \
+	"$PREFIX/eps/*=tex/latex/$PACKAGE_NAME"
+
+mv $PACKAGE_NAME.tar.gz $MESON_BUILD_ROOT

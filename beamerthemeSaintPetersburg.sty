@@ -1,3 +1,6 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{SaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
+
 % options
 \newif\if@doRussian
 \newif\if@doEnglish
@@ -6,6 +9,8 @@
 \DeclareOption{russian}{\@doRussiantrue\@doEnglishfalse}
 \DeclareOption{english}{\@doRussianfalse\@doEnglishtrue}
 \ProcessOptions
+
+\mode<presentation>
 
 % font theme
 \RequirePackage{fontspec}
@@ -53,13 +58,13 @@
 				\node[anchor=north west] at (current page.north west) {%
 					\hspace*{-2mm}%
 					\if@doRussian%
-						\includegraphics[height=0.2\paperheight]{bloc_rus_l}%
+						\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
 					\else%
-						\includegraphics[height=0.2\paperheight]{bloc_eng_l}%
+						\includegraphics[height=0.2\paperheight]{spbu-block-en}%
 					\fi%
 				};
 				\node[anchor=south east,opacity=0.1] at (current page.south east) {%
-					\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{CoA_Medium}%
+					\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{spbu-CoA}%
 				};
 			\end{tikzpicture}
     	\end{beamercolorbox}
@@ -144,3 +149,5 @@
 \setbeamercolor{block body}{fg=spbuDarkGray,bg=spbuWhite2}
 \setbeamercolor{section in toc}{parent=normal text}
 \setbeamercolor{section page}{parent=frametitle}
+
+\mode<all>
