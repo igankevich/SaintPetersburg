@@ -41,4 +41,13 @@ install_data(
 	install_dir: texmf_local_dir + '/tex/latex/' + project_name
 )
 
+install_data(
+	sources: [
+		'fonts/OldStandard-Bold.otf',
+		'fonts/OldStandard-Italic.otf',
+		'fonts/OldStandard-Regular.otf'
+	],
+	install_dir: texmf_local_dir + '/fonts/opentype/public/' + project_name
+)
+
 run_target('ctanify', 'scripts/ctanify')
