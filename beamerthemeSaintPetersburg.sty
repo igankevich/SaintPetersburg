@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{SaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
+\ProvidesPackage{beamerthemeSaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
 
 % options
 \newif\if@doRussian
@@ -14,9 +14,12 @@
 
 % font theme
 \RequirePackage{fontspec}
+\RequirePackage[default]{opensans}
+\RequirePackage{FiraMono}
+\RequirePackage{ifxetex}
+\ifxetex%
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[
-	Script=Cyrillic,
 	Extension=.ttf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
@@ -24,7 +27,6 @@
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
 \newfontfamily\cyrillicfont[
-	Script=Cyrillic,
 	Extension=.ttf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
@@ -32,7 +34,6 @@
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
 \newfontfamily\cyrillicfontsf[
-	Script=Cyrillic,
 	Extension=.ttf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
@@ -40,11 +41,11 @@
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
 \newfontfamily\cyrillicfonttt[
-	Script=Cyrillic,
 	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold
 ]{FiraMono}
+\fi%
 
 % inner theme
 \RequirePackage{graphicx}

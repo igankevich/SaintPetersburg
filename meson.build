@@ -41,22 +41,4 @@ install_data(
 	install_dir: texmf_local_dir + '/tex/latex/' + project_name
 )
 
-install_data(
-	sources: [
-		'fonts/OpenSans-BoldItalic.ttf',
-		'fonts/OpenSans-Bold.ttf',
-		'fonts/OpenSans-Italic.ttf',
-		'fonts/OpenSans-Regular.ttf'
-	],
-	install_dir: texmf_local_dir + '/fonts/truetype/public/' + project_name
-)
-
-install_data(
-	sources: [
-		'fonts/FiraMono-Bold.otf',
-		'fonts/FiraMono-Regular.otf'
-	],
-	install_dir: texmf_local_dir + '/fonts/opentype/public/' + project_name
-)
-
 run_target('ctanify', 'scripts/ctanify')
