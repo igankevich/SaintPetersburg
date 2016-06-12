@@ -107,10 +107,32 @@
 
 \subsection{The Model and the Problem}
 
+\begin{frame}{Модель Лонге---Хиггинса}
+    \small
+    Формула аппликаты волны:
+    \begin{equation*}
+        \begin{array}{ll}
+            \zeta(x,y,t) &= \sum\limits_n c_n \cos(u_n x + v_n y - \omega_n t + \epsilon_n), \\
+            \text{где} & {\textstyle c_n = \sqrt{ \int\limits_{\omega_n}^{\omega_{n+1}} S(\omega) d\omega}},
+            \qquad\epsilon_n\text{ --- белый шум}.\\
+        \end{array}
+    \end{equation*}
+    Формула потенциала скорости:
+    \begin{equation*}
+        \phi(x,y,z,t) = \sum_n \frac{c_n g}{\omega_n} 
+        e^{z\sqrt{u_n^2+v_n^2}}
+        \sin(u_n x + v_n y - \omega_n t + \epsilon_n).
+    \end{equation*}
+    Недостатки модели: периодичность, медленная сходимость, только для линейного волнения.
+\end{frame}
+
+
 \begin{frame}[fragile]{What is haplotyping and why is it important?}
   You hopefully know this after the previous three talks\dots
   Привет!
-  \texttt{int main}
+  \textsf{Saint Petersburg}\newline
+  \textsc{Saint Petersburg}\newline
+  \texttt{int main}\newline
   \begin{verbatim}
   int main() {
       return 0;

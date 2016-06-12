@@ -14,8 +14,9 @@
 
 % font theme
 \RequirePackage{fontspec}
-\RequirePackage[default]{opensans}
+\RequirePackage{FiraSans}
 \RequirePackage{FiraMono}
+\RequirePackage[default]{opensans}
 \RequirePackage{ifxetex}
 \ifxetex%
 \defaultfontfeatures{Mapping=tex-text}
@@ -34,13 +35,17 @@
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
 \newfontfamily\cyrillicfontsf[
-	Extension=.ttf,
+	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
-	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic
-]{OpenSans}
+	ItalicFont=*-Italic
+]{OldStandard}
 \newfontfamily\cyrillicfonttt[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold
+]{FiraMono}
+\setmonofont[
 	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold
