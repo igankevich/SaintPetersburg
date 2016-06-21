@@ -37,11 +37,13 @@ install:
 		fonts/OldStandard-Bold.otf \
 		fonts/OldStandard-Italic.otf \
 		fonts/OldStandard-Regular.otf
+	mktexlsr
 
 uninstall:
 	rm -rf \
 		$(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)/ \
 		$(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)/
+	mktexlsr
 
 ctanify:
 	ctanify \
