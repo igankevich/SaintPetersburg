@@ -46,6 +46,8 @@
 ]{FiraMono}
 \fi%
 
+\setbeamerfont{note page}{size=\small}
+
 % inner theme
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
@@ -123,7 +125,12 @@
 \beamertemplatenavigationsymbolsempty
 
 % black-on-white speaker notes
-\setbeamertemplate{note page}{\insertnote}
+\setbeamertemplate{note page}{%
+	% TODO fix textwidth
+	\begin{minipage}{0.85\paperwidth}%
+		\spbuInsertField{note}%
+	\end{minipage}%
+}
 
 % color theme
 
