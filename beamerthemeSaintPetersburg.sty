@@ -4,7 +4,6 @@
 \mode<presentation>
 
 % font theme
-\RequirePackage{FiraSans}
 \RequirePackage{FiraMono}
 \RequirePackage[default]{opensans}
 \RequirePackage{ifxetex}
@@ -18,7 +17,7 @@
 	ItalicFont=*-Italic,
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
-\newfontfamily\romanfont[
+\setromanfont[
 	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
@@ -84,6 +83,9 @@
 \setbeamerfont{note page}{size=\small}
 \setbeamerfont{tiny structure}{family=\sffamily}
 \setbeamerfont{structure}{family=\sffamily}
+\setbeamerfont{section in toc}{family=\sffamily}
+\setbeamerfont{subsection in toc}{family=\sffamily}
+\setbeamerfont{subsubsection in toc}{family=\sffamily}
 \setbeamerfont{block title alerted}{series=\bfseries}
 \usefonttheme{professionalfonts}
 
@@ -231,7 +233,7 @@
 
 \definecolor{spbuWhiteRed2}{RGB}{255,231,230}
 \definecolor{spbuWhiteRed3}{RGB}{255,160,160}
-\definecolor{spbuRed}{RGB}{255,40,40}
+\definecolor{spbuRed}{RGB}{200,40,40}
 
 \definecolor{spbuDarkGray}{HTML}{5F7177}
 \definecolor{spbuTerracottaLight}{HTML}{9F827F}
