@@ -80,8 +80,6 @@
 ]{FiraMono}
 \fi%
 
-\renewcommand*\familydefault{\sfdefault}
-
 \setbeamerfont{note page}{size=\small}
 \setbeamerfont{tiny structure}{family=\sffamily}
 \setbeamerfont{structure}{family=\sffamily}
@@ -229,11 +227,12 @@
 % theorem/corollary etc.
 \setbeamertemplate{theorem begin}{%
 	\normalfont% ignore body font
+	\sffamily\upshape%
 	\begin{\inserttheoremblockenv}{%
 		\inserttheoremname
 		\ifx\inserttheoremaddition\empty\else\ (\inserttheoremaddition)\fi%
 	}
-	\sffamily%
+	\sffamily\upshape%
 }
 \setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
 
@@ -252,8 +251,6 @@
 \definecolor{spbuRed}{RGB}{200,40,40}
 
 \definecolor{spbuDarkGray}{HTML}{5F7177}
-\definecolor{spbuTerracottaLight}{HTML}{9F827F}
-\definecolor{spbuTerracottaDark}{HTML}{CC7066}
 
 \setbeamercolor{normal text}{fg=spbuDarkGray,bg=spbuWhite1}
 \setbeamercolor{frametitle}{bg=spbuWhite1,fg=spbuTerracotta}
@@ -283,5 +280,14 @@
 \newtranslation[to=russian]{Part}{Часть}
 \newtranslation[to=russian]{Section}{Раздел}
 \newtranslation[to=russian]{Subsection}{Подраздел}
+\newtranslation[to=russian]{Theorem}{Теорема}
+\newtranslation[to=russian]{Proof}{Доказательство}
+\newtranslation[to=russian]{Corollary}{Следствие}
+\newtranslation[to=russian]{Definition}{Определение}
+\newtranslation[to=russian]{Definitions}{Определения}
+\newtranslation[to=russian]{Fact}{Утверждение}
+\newtranslation[to=russian]{Lemma}{Лемма}
+\newtranslation[to=russian]{Example}{Пример}
+\newtranslation[to=russian]{Examples}{Примеры}
 
 \mode<all>
