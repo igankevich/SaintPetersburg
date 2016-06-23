@@ -18,6 +18,12 @@
 	ItalicFont=*-Italic,
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
+\newfontfamily\romanfont[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+]{OldStandard}
 \setsansfont[
 	Extension=.ttf,
 	UprightFont=*-Regular,
@@ -31,11 +37,12 @@
 	BoldFont=*-Bold
 ]{FiraMono}
 \newfontfamily\cyrillicfont[
-	Extension=.otf,
+	Extension=.ttf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
 	ItalicFont=*-Italic,
-]{OldStandard}
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
 \newfontfamily\cyrillicfontrm[
 	Extension=.otf,
 	UprightFont=*-Regular,
@@ -77,6 +84,7 @@
 \setbeamerfont{note page}{size=\small}
 \setbeamerfont{tiny structure}{family=\sffamily}
 \setbeamerfont{structure}{family=\sffamily}
+\setbeamerfont{block title alerted}{series=\bfseries}
 \usefonttheme{professionalfonts}
 
 % inner theme
@@ -117,7 +125,7 @@
 \par%
 }
 
-\defbeamertemplate*{title page}{customized}[1][]{
+\setbeamertemplate{title page}{%
 	\centering
 	\vspace{0.2\textheight}\spbuInsertField{title}%
 	\vfill\spbuInsertField{author}
@@ -137,7 +145,7 @@
 \definecolor{spbuBar5}{HTML}{aa1d21}
 \definecolor{spbuBar6}{HTML}{93a5a7}
 
-\defbeamertemplate*{frametitle}{spbu}[1][]{
+\setbeamertemplate{frametitle}{%
 	\spbuInsertField{frametitle}
 	\ifx\insertframesubtitle\empty\else%
 		\spbuInsertField{framesubtitle}
@@ -163,6 +171,54 @@
 	\end{minipage}%
 }
 
+% block
+\setbeamertemplate{block begin}{
+	\vspace{-\baselineskip}%
+	\begin{flushright}
+		\begin{beamercolorbox}[colsep*=.75ex]{block title}%
+			\usebeamerfont*{block title}\insertblocktitle
+		\end{beamercolorbox}%
+		{\parskip0pt\nointerlineskip\par}%
+		\usebeamerfont{block body}%
+		\begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+}
+\setbeamertemplate{block end}{
+		\end{beamercolorbox}
+	\end{flushright}
+}
+
+% alterblock
+\setbeamertemplate{block alerted begin}{
+	\vspace{-\baselineskip}%
+	\begin{flushright}
+		\begin{beamercolorbox}[colsep*=.75ex]{block title alerted}%
+			\usebeamerfont*{block title alerted}\insertblocktitle
+		\end{beamercolorbox}%
+		{\parskip0pt\nointerlineskip\par}%
+		\usebeamerfont{block body alerted}%
+		\begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+}
+\setbeamertemplate{block alerted end}{
+		\end{beamercolorbox}
+	\end{flushright}
+}
+
+% exampleblock
+\setbeamertemplate{block example begin}{
+	\vspace{-\baselineskip}%
+	\begin{flushright}
+		\begin{beamercolorbox}[colsep*=.75ex]{block title example}%
+			\usebeamerfont*{block title example}\insertblocktitle
+		\end{beamercolorbox}%
+		{\parskip0pt\nointerlineskip\par}%
+		\usebeamerfont{block body example}%
+		\begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+}
+\setbeamertemplate{block example end}{
+		\end{beamercolorbox}
+	\end{flushright}
+}
+
 % color theme
 
 % corporate colors
@@ -172,7 +228,14 @@
 \definecolor{spbuWhite1}{RGB}{245,246,245}
 \definecolor{spbuWhite2}{RGB}{230,231,230}
 \definecolor{spbuWhite3}{RGB}{217,218,217}
+
+\definecolor{spbuWhiteRed2}{RGB}{255,231,230}
+\definecolor{spbuWhiteRed3}{RGB}{255,160,160}
+\definecolor{spbuRed}{RGB}{255,40,40}
+
 \definecolor{spbuDarkGray}{HTML}{5F7177}
+\definecolor{spbuTerracottaLight}{HTML}{9F827F}
+\definecolor{spbuTerracottaDark}{HTML}{CC7066}
 
 \setbeamercolor{normal text}{fg=spbuDarkGray,bg=spbuWhite1}
 \setbeamercolor{frametitle}{bg=spbuWhite1,fg=spbuTerracotta}
@@ -186,6 +249,10 @@
 \setbeamercolor{item}{parent=normal text}
 \setbeamercolor{block title}{fg=spbuDarkGray,bg=spbuWhite3}
 \setbeamercolor{block body}{fg=spbuDarkGray,bg=spbuWhite2}
+\setbeamercolor{block title alerted}{fg=spbuRed,bg=spbuWhiteRed3}
+\setbeamercolor{block body alerted}{fg=spbuDarkGray,bg=spbuWhiteRed2}
+\setbeamercolor{block title example}{bg=spbuWhite3}
+\setbeamercolor{block body example}{fg=spbuDarkGray,bg=spbuWhite2}
 
 % part, section, subsection pages, table of contents page
 \setbeamercolor{section in toc}{parent=normal text}

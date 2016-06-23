@@ -25,10 +25,8 @@
 
 \ifxetex%
 \usepackage{polyglossia}
-\setdefaultlanguage{russian}
-%\setotherlanguage{english}
-%\setotherlanguage{russian}
-%\setdefaultlanguage{english}
+%\setdefaultlanguage{russian}
+\setdefaultlanguage{english}
 \else
 \usepackage[english,russian]{babel}
 \usepackage[utf8]{inputenc}
@@ -119,6 +117,40 @@
 \subsection{The Model and the Problem}
 
 \frame{\subsectionpage}
+
+\begin{frame}
+    \frametitle{Fault-tolerance techniques spectrum}
+    Master node is a node where the main process of a job is created.
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \begin{alertblock}{Stateless}
+                Restart a job from scratch.
+            \end{alertblock}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{block}{Stateful}
+                Restart a job from the last checkpoint.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fault-tolerance techniques spectrum}
+    Master node is a node where the main process of a job is created.
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \begin{exampleblock}{Stateless}
+                Restart a job from scratch.
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{block}{Stateful}
+                Restart a job from the last checkpoint.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \begin{frame}{Модель Лонге---Хиггинса}
     \small
