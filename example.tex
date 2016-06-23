@@ -7,35 +7,23 @@
 %
 % See the file doc/licenses/LICENSE for more details.
 
-
-
 \documentclass[aspectratio=169]{beamer}
 \usepackage{ifxetex}
 
-%
-% DO NOT USE THIS FILE AS A TEMPLATE FOR YOUR OWN TALKS¡!!
-%
-% Use a file in the directory solutions instead.
-% They are much better suited.
-%
-
-
-% Setup appearance:
-
-
 \ifxetex%
-\usepackage{polyglossia}
-%\setdefaultlanguage{russian}
-\setdefaultlanguage{english}
+	\usepackage{polyglossia}
+	%\setdefaultlanguage{russian}
+	\setdefaultlanguage{english}
 \else
-\usepackage[english,russian]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+	\usepackage{graphicx}
+	\usepackage[russian,english]{babel}
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+	\selectlanguage{english}
 \fi
 
 \usetheme{SaintPetersburg}
 
-%\selectlanguage{english}
 %\usefonttheme[onlylarge]{structurebold}
 %\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
 %\setbeamertemplate{navigation symbols}{}
@@ -152,31 +140,34 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Модель Лонге---Хиггинса}
-    \small
-    Формула аппликаты волны:
-    \begin{equation*}
-        \begin{array}{ll}
-            \zeta(x,y,t) &= \sum\limits_n c_n \cos(u_n x + v_n y - \omega_n t + \epsilon_n), \\
-            \text{где} & {\textstyle c_n = \sqrt{ \int\limits_{\omega_n}^{\omega_{n+1}} S(\omega) d\omega}},
-            \qquad\epsilon_n\text{ --- белый шум}.\\
-        \end{array}
-    \end{equation*}
-    Формула потенциала скорости:
-    \begin{equation*}
-        \phi(x,y,z,t) = \sum_n \frac{c_n g}{\omega_n} 
-        e^{z\sqrt{u_n^2+v_n^2}}
-        \sin(u_n x + v_n y - \omega_n t + \epsilon_n).
-    \end{equation*}
-    Недостатки модели: периодичность, медленная сходимость, только для линейного волнения.
-\end{frame}
+%\begin{frame}{\foreignlanguage{russian}{Модель Лонге---Хиггинса}}
+%    \small
+%    Формула аппликаты волны:
+%    \begin{equation*}
+%        \begin{array}{ll}
+%            \zeta(x,y,t) &= \sum\limits_n c_n \cos(u_n x + v_n y - \omega_n t + \epsilon_n), \\
+%            \text{где} & {\textstyle c_n = \sqrt{ \int\limits_{\omega_n}^{\omega_{n+1}} S(\omega) d\omega}},
+%            \qquad\epsilon_n\text{ --- белый шум}.\\
+%        \end{array}
+%    \end{equation*}
+%    Формула потенциала скорости:
+%    \begin{equation}
+%        \phi(x,y,z,t) = \sum_n \frac{c_n g}{\omega_n} 
+%        e^{z\sqrt{u_n^2+v_n^2}}
+%        \sin(u_n x + v_n y - \omega_n t + \epsilon_n).
+%    \end{equation}
+%    Недостатки модели: периодичность, медленная сходимость, только для линейного волнения.
+%\end{frame}
 
 
 \begin{frame}[fragile]{What is haplotyping and why is it important?}
   You hopefully know this after the previous three talks\dots
-  Привет!
   \newline
-  \textrm{Широкий}\newline
+	\ifxetex
+		\textrm{Широкий}\newline
+	\else
+		\foreignlanguage{russian}{\textrm{Широкий}\newline}
+	\fi
   \textrm{Saint Petersburg}\newline
   \textsf{Saint Petersburg}\newline
   \textsc{Saint Petersburg}\newline

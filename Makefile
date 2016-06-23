@@ -16,7 +16,7 @@ TEXMF_LOCAL_DIR = $(shell kpsewhich --var-value TEXMFLOCAL)
 
 build/$(THEME_NAME).pdf: build
 build/$(THEME_NAME).pdf: beamerthemeSaintPetersburg.sty example.tex
-build/$(THEME_NAME).pdf: fonts/* eps/*
+build/$(THEME_NAME).pdf: fonts/* art/*
 build/$(THEME_NAME).pdf: export TEXINPUTS=$(INPUTS)
 build/$(THEME_NAME).pdf: export BIBINPUTS=$(INPUTS)
 build/$(THEME_NAME).pdf: export TTFONTS=$(INPUTS)
