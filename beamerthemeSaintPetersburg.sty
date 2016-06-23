@@ -4,12 +4,12 @@
 \mode<presentation>
 
 % font theme
-\RequirePackage{fontspec}
 \RequirePackage{FiraSans}
 \RequirePackage{FiraMono}
 \RequirePackage[default]{opensans}
 \RequirePackage{ifxetex}
 \ifxetex%
+\RequirePackage{fontspec}
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[
 	Extension=.ttf,
@@ -18,20 +18,30 @@
 	ItalicFont=*-Italic,
 	BoldItalicFont=*-BoldItalic
 ]{OpenSans}
+\setsansfont[
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
+\setmonofont[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold
+]{FiraMono}
 \newfontfamily\cyrillicfont[
-	Extension=.ttf,
+	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
 	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic
-]{OpenSans}
+]{OldStandard}
 \newfontfamily\cyrillicfontrm[
-	Extension=.ttf,
+	Extension=.otf,
 	UprightFont=*-Regular,
 	BoldFont=*-Bold,
 	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic
-]{OpenSans}
+]{OldStandard}
 \newfontfamily\cyrillicfontsf[
 	Extension=.ttf,
 	UprightFont=*-Regular,
@@ -44,9 +54,30 @@
 	UprightFont=*-Regular,
 	BoldFont=*-Bold
 ]{FiraMono}
+\newfontfamily\rmfamily[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+]{OldStandard}
+\newfontfamily\sffamily[
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{OpenSans}
+\newfontfamily\ttfamily[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold
+]{FiraMono}
 \fi%
 
 \setbeamerfont{note page}{size=\small}
+\setbeamerfont{tiny structure}{family=\sffamily}
+\setbeamerfont{structure}{family=\sffamily}
+\usefonttheme{professionalfonts}
 
 % inner theme
 \RequirePackage{graphicx}

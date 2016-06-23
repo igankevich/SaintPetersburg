@@ -10,6 +10,7 @@
 
 
 \documentclass[aspectratio=169]{beamer}
+\usepackage{ifxetex}
 
 %
 % DO NOT USE THIS FILE AS A TEMPLATE FOR YOUR OWN TALKS¡!!
@@ -22,11 +23,17 @@
 % Setup appearance:
 
 
+\ifxetex%
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
-\setotherlanguage{english}
-%\setdefaultlanguage{english}
+%\setotherlanguage{english}
 %\setotherlanguage{russian}
+%\setdefaultlanguage{english}
+\else
+\usepackage[english,russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\fi
 
 \usetheme{SaintPetersburg}
 
@@ -38,10 +45,7 @@
 
 % Standard packages
 
-%\usepackage[english]{babel}
-%\usepackage[latin1]{inputenc}
 \usepackage{times}
-%\usepackage[T1]{fontenc}
 
 
 % Setup TikZ
@@ -139,9 +143,12 @@
 \begin{frame}[fragile]{What is haplotyping and why is it important?}
   You hopefully know this after the previous three talks\dots
   Привет!
+  \newline
+  \textrm{Широкий}\newline
+  \textrm{Saint Petersburg}\newline
   \textsf{Saint Petersburg}\newline
   \textsc{Saint Petersburg}\newline
-  \texttt{int main}\newline
+  \texttt{Saint Petersburg}\newline
   \begin{verbatim}
   int main() {
       return 0;
