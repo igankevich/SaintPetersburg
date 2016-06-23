@@ -30,9 +30,9 @@ build:
 install:
 	install -m644 -D -t $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)/ \
 		beamerthemeSaintPetersburg.sty \
-		eps/spbu-block-en.eps \
-		eps/spbu-block-ru.eps \
-		eps/spbu-CoA.eps
+		art/spbu-block-en.eps \
+		art/spbu-block-ru.eps \
+		art/spbu-CoA.eps
 	install -m644 -D -t $(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)/ \
 		fonts/OldStandard-Bold.otf \
 		fonts/OldStandard-Italic.otf \
