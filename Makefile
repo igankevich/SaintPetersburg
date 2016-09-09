@@ -30,6 +30,8 @@ build:
 install:
 	install -m644 -D -t $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)/ \
 		beamerthemeSaintPetersburg.sty \
+		beamerfontthemeSaintPetersburg.sty \
+		beamercolorthemeSaintPetersburg.sty \
 		art/spbu-block-en.eps \
 		art/spbu-block-ru.eps \
 		art/spbu-CoA.eps
