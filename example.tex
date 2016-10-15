@@ -23,6 +23,7 @@
 \fi
 
 \usetheme{SaintPetersburg}
+\usepackage{listings}
 
 %\usefonttheme[onlylarge]{structurebold}
 %\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
@@ -119,7 +120,11 @@
 			\begin{proof}\end{proof}
 			\begin{corollary}\end{corollary}
 			\begin{lemma}\end{lemma}
-			\begin{fact}\end{fact}
+			\begin{fact}
+				- \newline
+				-- \newline
+				--- \newline
+			\end{fact}
         \end{column}
 	\end{columns}
 \end{frame}
@@ -139,6 +144,19 @@
             \end{block}
         \end{column}
     \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Listings}
+\lstset{language=sh,basicstyle=\ttfamily,literate={-}{-}1}
+\begin{lstlisting}
+cat >foam.sh << 'EOF'
+#!/bin/sh
+#PBS -l nodes=1:ppn=2
+# go to project directory
+cd ~/damBreak
+nprocs=$(wc -l <$PBS_NODEFILE)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
