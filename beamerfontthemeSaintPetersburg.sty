@@ -91,5 +91,24 @@
 \setbeamerfont{subsection in toc}{family=\sffamily}
 \setbeamerfont{subsubsection in toc}{family=\sffamily}
 \setbeamerfont{block title alerted}{series=\bfseries}
+\setbeamerfont{abstract}{size=\normalsize}
 \usefonttheme{professionalfonts}
 
+% poster
+\makeatletter%
+\if@spbuPoster%
+
+% small bibitems
+\setbeamerfont{bibliography item}{size=\small}
+\setbeamerfont{bibliography entry author}{size=\small}
+
+% large fonts
+\setbeamerfont{section in head/foot}{series=\bfseries}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block alerted title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamerfont{caption}{size=\normalsize}
+\setbeamerfont{caption name}{size=\normalsize}
+
+\fi%
+\makeatother%

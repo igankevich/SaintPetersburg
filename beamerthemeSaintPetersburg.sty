@@ -1,6 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeSaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
 
+\newif\if@spbuPoster
+\@spbuPosterfalse
+\DeclareOption{poster}{\@spbuPostertrue}
+\ProcessOptions
+
 \mode<presentation>
 
 \usefonttheme{SaintPetersburg}
@@ -14,15 +19,18 @@
 		\hspace{\beamer@leftmargin}%
 		\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,dp=0pt]{background canvas}%
 			\begin{tikzpicture}[remember picture,overlay]
-				% top left CoA
-				\node[anchor=north west] at (current page.north west) {%
-					\hspace*{-2mm}%
-					\iflanguage{russian}{%
-						\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
-					}{%
-						\includegraphics[height=0.2\paperheight]{spbu-block-en}%
-					}%
-				};
+				\if@spbuPoster%
+				\else%
+					% top left CoA
+					\node[anchor=north west] at (current page.north west) {%
+						\hspace*{-2mm}%
+						\iflanguage{russian}{%
+							\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
+						}{%
+							\includegraphics[height=0.2\paperheight]{spbu-block-en}%
+						}%
+					};
+				\fi%
 				% background CoA
 				\node[anchor=south east,opacity=0.1] at (current page.south east) {%
 					\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{spbu-CoA}%
@@ -154,6 +162,100 @@
 
 % remove bibliography item marker
 \setbeamertemplate{bibliography item}{}
+
+% abstract
+\setbeamertemplate{abstract title}{%
+\usebeamerfont{abstract title}%
+\usebeamercolor[fg]{abstract title}%
+\abstractname.%
+}
+
+
+% poster
+\makeatletter%
+\if@spbuPoster%
+
+% justified abstract
+\setbeamertemplate{abstract begin}{%
+\begin{minipage}{\linewidth}%
+\justifying%
+}
+\setbeamertemplate{abstract end}{%
+\end{minipage}%
+}
+
+% new commands for the logo on the right side
+\newcommand*{\othergraphic}[1]{\gdef\@othergraphic{#1}}%
+\newcommand*{\@othergraphic}[1]{}%
+\newcommand*{\insertothergraphic}{\@othergraphic{}}%
+
+\setbeamertemplate{headline}{%
+	\vskip2cm%
+	\begin{columns}%
+		\begin{column}{0.20\linewidth}%
+			\centering%
+			\inserttitlegraphic%
+		\end{column}%
+		\begin{column}{.6\linewidth}%
+			\centering%
+			{\usebeamercolor[fg]{title in head/foot}\textbf{\huge{\inserttitle}}}%
+			\vskip 1.5cm%
+			{\usebeamercolor{author in head/foot}\Large{\insertauthor}}%
+			\vskip\baselineskip%
+			{\usebeamercolor{institute in head/foot}\large{\insertinstitute}}%
+			\vskip2cm%
+		\end{column}%
+		\begin{column}{.20\linewidth}%
+			\centering%
+			\insertothergraphic%
+		\end{column}%
+		\vspace{1cm}%
+	\end{columns}%
+}
+
+\setbeamertemplate{footline}{
+	\vskip2cm%
+	\begin{center}%
+		\begin{minipage}[c][3cm][c]{0.95\textwidth}%
+			\centering%
+			\begin{flushleft}%
+				\vskip-1cm%
+				\begin{tikzpicture}[remember picture,overlay]%
+					\fill [spbuTerracotta] (0,0) rectangle (\textwidth,0.1cm);%
+				\end{tikzpicture}%
+			\end{flushleft}%
+			\vskip1cm%
+			{\usebeamercolor{normal text}\textbf{\large{\insertshorttitle}}}%
+		\end{minipage}%
+	\end{center}%
+	\vskip1cm%
+}
+
+\renewcommand{\section}[1]{%
+\vskip\baselineskip%
+\begin{center}%
+{\textcolor{spbuTerracotta}{\textbf{\Large #1}}}%
+\vskip0.4\baselineskip%
+\end{center}%
+\justifying%
+\setlength{\parindent}{1.5cm}%
+}
+
+\renewcommand{\subsection}[1]{%
+\vskip0.8\baselineskip%
+\begin{center}%
+{\textcolor{spbuTerracotta}{\textbf{\textsl{\large #1}}}}%
+\vskip0.3\baselineskip%
+\end{center}%
+\justifying%
+\setlength{\parindent}{1.5cm}%
+}
+
+% numbered bibliography
+\setbeamertemplate{bibliography item}[text]
+
+\fi%
+\makeatother%
 
 % color theme
 \usecolortheme{SaintPetersburg}

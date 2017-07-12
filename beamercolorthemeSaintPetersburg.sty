@@ -20,6 +20,7 @@
 \setbeamercolor{subtitle}{parent=normal text}
 \setbeamercolor{date}{parent=normal text}
 \setbeamercolor{author}{parent=normal text}
+\setbeamercolor{institute}{parent=normal text}
 \setbeamercolor{background canvas}{parent=normal text}
 \setbeamercolor{background}{parent=background canvas}
 \setbeamercolor{math text}{fg=spbuDarkGray,bg=spbuWhite1}
@@ -43,7 +44,31 @@
 % bibliography items
 \setbeamercolor{bibliography item}{parent=normal text}
 \setbeamercolor*{bibliography entry title}{parent=normal text}
-\setbeamercolor*{bibliography entry author}{parent=frametitle}
+\setbeamercolor*{bibliography entry author}{parent=normal text}
 \setbeamercolor*{bibliography entry location}{parent=normal text,fg=spbuDarkGray2}
+\setbeamercolor*{bibliography entry journal}{parent=normal text,fg=spbuDarkGray2}
 \setbeamercolor*{bibliography entry note}{parent=normal text}
 
+% abstract
+\setbeamercolor{abstract title}{parent=frametitle}
+\setbeamercolor{abstract}{parent=normal text}
+
+% captions
+\setbeamercolor{caption name}{parent=frametitle}
+\setbeamercolor{caption}{parent=normal text}
+
+% headline
+\setbeamercolor{title in head/foot}{parent=title}
+\setbeamercolor{subtitle in head/foot}{parent=subtitle}
+\setbeamercolor{author in head/foot}{parent=author}
+\setbeamercolor{date in head/foot}{parent=date}
+\setbeamercolor{institute in head/foot}{parent=institute}
+
+\makeatletter%
+\if@spbuPoster%
+
+% white background for printing
+\beamertemplatesolidbackgroundcolor{white}
+
+\fi%
+\makeatother%
