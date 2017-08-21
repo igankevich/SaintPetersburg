@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# compile MWE with all possible cases
+set -e
+
+workdir=$(mktemp -d)
+cat >$workdir/mwe.tex << 'EOF'
+\title{Saint Petersburg \LaTeX~Beamer theme}
+\author{Ivan Gankevich}
+\institute{Saint Petersburg State University}
+\date{2017}
+\begin{document}
+\frame{\titlepage}
+\end{document}
+EOF
+
+function xetex_template() {
+language=$1
+options=$2
+cat >$workdir/xetex-$language-$options.tpl << EOF
+\\documentclass[aspectratio=169]{beamer}
+\\usepackage{polyglossia}
+\\setdefaultlanguage{$language}
+\\usetheme[$options]{SaintPetersburg}
+EOF
+}
+
+xetex_template english
+xetex_template english poster
+xetex_template russian
+xetex_template russian poster
+
+function latex_template() {
+language=$1
+other_language=$2
+options=$3
+cat >$workdir/latex-$language-$options.tpl << EOF
+\\documentclass[aspectratio=169]{beamer}
+\\usepackage[utf8]{inputenc}
+\\usepackage[$language,$other_language]{babel}
+\\usetheme[$options]{SaintPetersburg}
+EOF
+}
+
+latex_template english russian
+latex_template english russian poster
+latex_template russian english
+latex_template russian english poster
+
+cd $workdir
+
+XETEX_FLAGS="-interaction=nonstopmode -pdf -xelatex"
+LATEX_FLAGS="-interaction=nonstopmode -pdf"
+
+function run_test() {
+engine=$1
+options=$2
+for f in $engine-*.tpl
+do
+	name=${f%%.tpl}
+	inputfile="$name.tex"
+	outdir="$name"
+	cat $f >> $inputfile
+	cat mwe.tex >> $inputfile
+	latexmk $options -output-directory=$outdir -jobname=$name $inputfile
+done
+}
+
+run_test xetex "$XETEX_FLAGS"
+run_test latex "$LATEX_FLAGS"
+
+ls -l $tmpdir
+rm -rf $tmpdir
