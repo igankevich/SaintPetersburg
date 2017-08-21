@@ -23,6 +23,14 @@ cat >$workdir/xetex-$language-$options.tpl << EOF
 \\setdefaultlanguage{$language}
 \\usetheme[$options]{SaintPetersburg}
 EOF
+if test "$options" = "poster"
+then
+cat >>$workdir/xetex-$language-$options.tpl << 'EOF'
+\leftcolumnwidth{.2\linewidth}
+\middlecolumnwidth{.6\linewidth}
+\rightcolumnwidth{.2\linewidth}
+EOF
+fi
 }
 
 xetex_template english
@@ -40,6 +48,14 @@ cat >$workdir/latex-$language-$options.tpl << EOF
 \\usepackage[$language,$other_language]{babel}
 \\usetheme[$options]{SaintPetersburg}
 EOF
+if test "$options" = "poster"
+then
+cat >>$workdir/xetex-$language-$options.tpl << 'EOF'
+\leftcolumnwidth{.2\linewidth}
+\middlecolumnwidth{.6\linewidth}
+\rightcolumnwidth{.2\linewidth}
+EOF
+fi
 }
 
 latex_template english russian

@@ -42,6 +42,13 @@ working example:
 \institute{Saint Petersburg State University}
 \date{2017}
 
+% for poster
+% \titlegraphic{\includegraphics[width=0.7\linewidth]{spbu-CoA}}
+% \othergraphic{\includegraphics[width=0.7\linewidth]{right-logo}}
+% \leftcolumnwidth{.2\linewidth}
+% \middlecolumnwidth{.6\linewidth}
+% \rightcolumnwidth{.2\linewidth}
+
 \begin{document}
 \frame{\titlepage}
 \end{document}
