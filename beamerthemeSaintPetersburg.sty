@@ -2,8 +2,11 @@
 \ProvidesPackage{beamerthemeSaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
 
 \newif\if@spbuPoster
+\newif\if@spbuLogo
 \@spbuPosterfalse
+\@spbuLogotrue
 \DeclareOption{poster}{\@spbuPostertrue}
+\DeclareOption{nologo}{\@spbuLogofalse}
 \ProcessOptions
 
 \mode<presentation>
@@ -24,11 +27,13 @@
 					% top left CoA
 					\node[anchor=north west] at (current page.north west) {%
 						\hspace*{-2mm}%
-						\iflanguage{russian}{%
-							\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
-						}{%
-							\includegraphics[height=0.2\paperheight]{spbu-block-en}%
-						}%
+						\if@spbuLogo%
+							\iflanguage{russian}{%
+								\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
+							}{%
+								\includegraphics[height=0.2\paperheight]{spbu-block-en}%
+							}%
+						\fi%
 					};
 				\fi%
 				% background CoA
@@ -52,15 +57,15 @@
 }
 
 \setbeamertemplate{title page}{%
-	\centering
+	\centering%
 	\vspace{0.2\textheight}\spbuInsertField{title}%
-	\vfill\spbuInsertField{author}
-	\vfill\spbuInsertField{institute}
-	\vfill\ifx\insertsubtitle\empty\else%
-		\spbuInsertField{subtitle}
-	\fi
-	\inserttitlegraphic
-	\vfill\spbuInsertField{date}
+	\vskip0.5\baselineskip\ifx\insertsubtitle\empty\else%
+		\spbuInsertField{subtitle}%
+	\fi%
+	\vskip\baselineskip\spbuInsertField{author}%
+	\vfill\spbuInsertField{institute}%
+	\vfill\inserttitlegraphic%
+	\vfill\spbuInsertField{date}%
 }
 
 % horizontal bar colors
@@ -150,15 +155,21 @@
 
 % theorem/corollary etc.
 \setbeamertemplate{theorem begin}{%
-	\normalfont% ignore body font
-	\sffamily\upshape%
+	\inserttheoremheadfont%
 	\begin{\inserttheoremblockenv}{%
-		\inserttheoremname
+		\inserttheoremname%
 		\ifx\inserttheoremaddition\empty\else\ (\inserttheoremaddition)\fi%
-	}
-	\sffamily\upshape%
+	}%
 }
 \setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+
+\setbeamertemplate{proof begin}{%
+	\inserttheoremheadfont%
+	\begin{\inserttheoremblockenv}{%
+		\proofname%
+	}%
+}
+\setbeamertemplate{proof end}{\end{\inserttheoremblockenv}}
 
 % remove bibliography item marker
 \setbeamertemplate{bibliography item}{}
