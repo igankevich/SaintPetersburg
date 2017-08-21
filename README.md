@@ -21,6 +21,7 @@ Saint-Petersburg theme can be compiled by LaTeX or XeTeX. Here is the minimal
 working example:
 ```latex
 \documentclass[aspectratio=169]{beamer}
+% add \usepackage{beamerposter} for the poster
 
 % XeTeX
 \usepackage{polyglossia}
@@ -30,7 +31,7 @@ working example:
 % LaTeX
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-% or \usepackage[russian,english]{babel}
+% or \usepackage[english,russian]{babel}
 
 \usetheme{SaintPetersburg}
 % or \usetheme[nologo]{SaintPetersburg} to disable logo on the title page

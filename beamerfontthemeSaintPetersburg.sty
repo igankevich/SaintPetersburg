@@ -1,11 +1,28 @@
 
 % font theme
 \RequirePackage{FiraMono}
-\RequirePackage[default]{opensans}
+\RequirePackage{opensans}
 \RequirePackage{ifxetex}
 \ifxetex%
 \RequirePackage{fontspec}
-%\defaultfontfeatures{Mapping=tex-text}
+
+\makeatletter%
+\if@spbuPoster%
+\setmainfont[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	Mapping=tex-text
+]{OldStandard}
+\newfontfamily\cyrillicfont[
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	Mapping=tex-text
+]{OldStandard}
+\else%
 \setmainfont[
 	Extension=.ttf,
 	UprightFont=*-Regular,
@@ -14,6 +31,16 @@
 	BoldItalicFont=*-BoldItalic,
 	Mapping=tex-text
 ]{OpenSans}
+\newfontfamily\cyrillicfont[
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic,
+	Mapping=tex-text
+]{OpenSans}
+\fi%
+\makeatother%
 \setromanfont[
 	Extension=.otf,
 	UprightFont=*-Regular,
@@ -34,14 +61,6 @@
 	UprightFont=*-Regular,
 	BoldFont=*-Bold
 ]{FiraMono}
-\newfontfamily\cyrillicfont[
-	Extension=.ttf,
-	UprightFont=*-Regular,
-	BoldFont=*-Bold,
-	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic,
-	Mapping=tex-text
-]{OpenSans}
 \newfontfamily\cyrillicfontrm[
 	Extension=.otf,
 	UprightFont=*-Regular,
@@ -95,11 +114,13 @@
 \setbeamerfont{title}{size=\Large}
 \setbeamerfont{subtitle}{size=\Large}
 \setbeamerfont{author}{size=\large}
-\usefonttheme{professionalfonts}
 
 % poster
 \makeatletter%
 \if@spbuPoster%
+
+% set roman font as default
+\usefonttheme{serif}
 
 % small bibitems
 \setbeamerfont{bibliography item}{size=\small}

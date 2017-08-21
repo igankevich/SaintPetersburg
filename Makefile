@@ -5,8 +5,7 @@ LATEXMK_FLAGS = \
 	-output-directory=build \
 	-pdf \
 	-xelatex \
-	-bibtex \
-	-jobname=$(THEME_NAME)
+	-bibtex
 
 # recursively search inputs in the current directory
 # and then in system directories
@@ -16,15 +15,27 @@ TEXMF_LOCAL_DIR = $(shell kpsewhich --var-value TEXMFLOCAL)
 THEME_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)
 THEME_FONT_DIR = $(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)
 
-build/$(THEME_NAME).pdf: build
-build/$(THEME_NAME).pdf: *.sty example.tex refs.bib
-build/$(THEME_NAME).pdf: fonts/* art/*
-build/$(THEME_NAME).pdf: export TEXINPUTS=$(INPUTS)
-build/$(THEME_NAME).pdf: export BIBINPUTS=$(INPUTS)
-build/$(THEME_NAME).pdf: export TTFONTS=$(INPUTS)
-build/$(THEME_NAME).pdf: export OPENTYPEFONTS=$(INPUTS)
-build/$(THEME_NAME).pdf:
-	$(LATEXMK) $(LATEXMK_FLAGS) example.tex
+all: build/slides.pdf build/poster.pdf
+
+build/slides.pdf: build
+build/slides.pdf: *.sty example.tex refs.bib
+build/slides.pdf: fonts/* art/*
+build/slides.pdf: export TEXINPUTS=$(INPUTS)
+build/slides.pdf: export BIBINPUTS=$(INPUTS)
+build/slides.pdf: export TTFONTS=$(INPUTS)
+build/slides.pdf: export OPENTYPEFONTS=$(INPUTS)
+build/slides.pdf:
+	$(LATEXMK) $(LATEXMK_FLAGS) -jobname=slides example.tex
+
+build/poster.pdf: build
+build/poster.pdf: *.sty poster.tex
+build/poster.pdf: fonts/* art/*
+build/poster.pdf: export TEXINPUTS=$(INPUTS)
+build/poster.pdf: export BIBINPUTS=$(INPUTS)
+build/poster.pdf: export TTFONTS=$(INPUTS)
+build/poster.pdf: export OPENTYPEFONTS=$(INPUTS)
+build/poster.pdf:
+	$(LATEXMK) $(LATEXMK_FLAGS) -jobname=poster poster.tex
 
 build:
 	mkdir build

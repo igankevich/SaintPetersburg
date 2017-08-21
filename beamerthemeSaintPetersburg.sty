@@ -200,14 +200,29 @@
 \newcommand*{\@othergraphic}[1]{}%
 \newcommand*{\insertothergraphic}{\@othergraphic{}}%
 
+% left column width
+\newcommand*{\leftcolumnwidth}[1]{\gdef\@leftcolumnwidth{#1}}%
+\newcommand*{\@leftcolumnwidth}[1]{.2\linewidth}%
+\newcommand*{\insertleftcolumnwidth}{\@leftcolumnwidth{}}%
+
+% right column width
+\newcommand*{\rightcolumnwidth}[1]{\gdef\@rightcolumnwidth{#1}}%
+\newcommand*{\@rightcolumnwidth}[1]{.2\linewidth}%
+\newcommand*{\insertrightcolumnwidth}{\@rightcolumnwidth{}}%
+
+% middle column width
+\newcommand*{\middlecolumnwidth}[1]{\gdef\@middlecolumnwidth{#1}}%
+\newcommand*{\@middlecolumnwidth}[1]{.6\linewidth}%
+\newcommand*{\insertmiddlecolumnwidth}{\@middlecolumnwidth{}}%
+
 \setbeamertemplate{headline}{%
 	\vskip2cm%
 	\begin{columns}%
-		\begin{column}{0.20\linewidth}%
+		\begin{column}{\insertleftcolumnwidth}%
 			\centering%
 			\inserttitlegraphic%
 		\end{column}%
-		\begin{column}{.6\linewidth}%
+		\begin{column}{\insertmiddlecolumnwidth}%
 			\centering%
 			{\usebeamercolor[fg]{title in head/foot}\textbf{\huge{\inserttitle}}}%
 			\vskip 1.5cm%
@@ -216,7 +231,7 @@
 			{\usebeamercolor{institute in head/foot}\large{\insertinstitute}}%
 			\vskip2cm%
 		\end{column}%
-		\begin{column}{.20\linewidth}%
+		\begin{column}{\insertrightcolumnwidth}%
 			\centering%
 			\insertothergraphic%
 		\end{column}%
