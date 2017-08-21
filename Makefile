@@ -13,6 +13,8 @@ LATEXMK_FLAGS = \
 INPUTS = .//:
 
 TEXMF_LOCAL_DIR = $(shell kpsewhich --var-value TEXMFLOCAL)
+THEME_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)
+THEME_FONT_DIR = $(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)
 
 build/$(THEME_NAME).pdf: build
 build/$(THEME_NAME).pdf: *.sty example.tex refs.bib
@@ -27,32 +29,34 @@ build/$(THEME_NAME).pdf:
 build:
 	mkdir build
 
+check: install
+	./test
+
 install:
-	install -m644 -D -t $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)/ \
-		beamerthemeSaintPetersburg.sty \
-		beamerfontthemeSaintPetersburg.sty \
-		beamercolorthemeSaintPetersburg.sty \
-		art/spbu-block-en.eps \
-		art/spbu-block-ru.eps \
-		art/spbu-CoA.eps
-	install -m644 -D -t $(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)/ \
-		fonts/OldStandard-Bold.otf \
-		fonts/OldStandard-Italic.otf \
-		fonts/OldStandard-Regular.otf
+	mkdir -p $(THEME_DIR) $(THEME_FONT_DIR)
+	install -m644 beamerthemeSaintPetersburg.sty $(THEME_DIR)
+	install -m644 beamerfontthemeSaintPetersburg.sty $(THEME_DIR)
+	install -m644 beamercolorthemeSaintPetersburg.sty $(THEME_DIR)
+	install -m644 art/spbu-block-en.pdf $(THEME_DIR)
+	install -m644 art/spbu-block-ru.pdf $(THEME_DIR)
+	install -m644 art/spbu-CoA.pdf $(THEME_DIR)
+	install -m644 fonts/OldStandard-Bold.otf $(THEME_FONT_DIR)
+	install -m644 fonts/OldStandard-Italic.otf $(THEME_FONT_DIR)
+	install -m644 fonts/OldStandard-Regular.otf $(THEME_FONT_DIR)
 	mktexlsr
 
 uninstall:
-	rm -rf \
-		$(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)/ \
-		$(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)/
+	rm -rf $(THEME_DIR) $(THEME_FONT_DIR)
 	mktexlsr
 
 ctanify:
 	ctanify \
 		--pkgname=$(THEME_NAME) \
 		beamerthemeSaintPetersburg.sty \
+		beamerfontthemeSaintPetersburg.sty \
+		beamercolorthemeSaintPetersburg.sty \
 		"fonts/OldStandard-*.otf=fonts/opentype/public/$(THEME_NAME)" \
-		"eps/*=tex/latex/$(THEME_NAME)"
+		"art/*.pdf=tex/latex/$(THEME_NAME)"
 	mv -v $(THEME_NAME).tar.gz build
 
 
