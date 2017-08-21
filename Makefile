@@ -84,13 +84,21 @@ uninstall:
 	mktexlsr
 
 ctanify: sty doc
+	rm -rf build/dist
+	mkdir -p build/dist
+	cp -rv src/*.dtx src/*.ins build/*.sty \
+		build/SaintPetersburg.pdf \
+		fonts \
+		art \
+		build/dist
+	cd build/dist && \
 	ctanify \
 		--pkgname=$(THEME_NAME) \
-		"build/SaintPetersburg.pdf=doc/latex/$(THEME_NAME)" \
-		"build/*.sty=tex/latex/$(THEME_NAME)" \
+		"SaintPetersburg.pdf" \
 		"art/*.pdf=tex/latex/$(THEME_NAME)" \
-		"fonts/OldStandard-*.otf=fonts/opentype/public/$(THEME_NAME)"
-	mv -v $(THEME_NAME).tar.gz build
+		"SaintPetersburg.ins" \
+		"fonts/*.otf=fonts/opentype/public/$(THEME_NAME)"
+	mv -v build/dist/$(THEME_NAME).tar.gz build
 
 
 clean:
