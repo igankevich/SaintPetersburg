@@ -90,6 +90,7 @@ ctanify: sty doc
 		build/SaintPetersburg.pdf \
 		fonts \
 		art \
+		README.md \
 		build/dist
 	cd build/dist && \
 	ctanify \
@@ -97,6 +98,7 @@ ctanify: sty doc
 		"SaintPetersburg.pdf" \
 		"art/*.pdf=tex/latex/$(THEME_NAME)" \
 		"SaintPetersburg.ins" \
+		"README.md" \
 		"fonts/*.otf=fonts/opentype/public/$(THEME_NAME)"
 	mv -v build/dist/$(THEME_NAME).tar.gz build
 

@@ -62,4 +62,4 @@ latexmk -pdf example.tex           # LaTeX
 
 ## License
 
-GPL licensed.
+LaTeX Project Public License 1.3 or later.
