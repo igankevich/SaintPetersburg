@@ -29,8 +29,8 @@ working example:
 % or \setdefaultlanguage{russian}
 
 % LaTeX
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+% \usepackage[utf8]{inputenc}
+% \usepackage[english]{babel}
 % or \usepackage[english,russian]{babel}
 
 \usetheme{SaintPetersburg}
