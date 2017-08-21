@@ -98,8 +98,9 @@ A small theme that incorporates university colours, fonts and CoA from
 
 \subsection{Installation}
 
-On Linux type \verb=make install= to install everything to standard TeX Live
-locations. Alternatively, just copy all \verb=*.sty=, \verb=*.eps= and
+On Linux/MacOS clone \href{https://github.com/igankevich/SaintPetersburg}{theme
+repository} and type \verb=make install= to install everything to standard TeX
+Live locations. Alternatively, just copy all \verb=*.sty=, \verb=*.eps= and
 \verb=*.otf= files into your project directory so that \LaTeX{} can find them.
 
 \subsection{Usage}
@@ -121,8 +122,6 @@ minimal working example:
 % or \usepackage[english,russian]{babel}
 
 \usetheme{SaintPetersburg}
-% or \usetheme[nologo]{SaintPetersburg} to disable title
-% page logo
 
 \title{Saint Petersburg \LaTeX{} Beamer theme}
 \author{Ivan Gankevich}
@@ -134,7 +133,7 @@ minimal working example:
 \end{document}
 \end{lstlisting}
 
-An example of poster.
+\noindent An example of poster.
 \begin{lstlisting}
 \documentclass[aspectratio=169]{beamer}
 \usepackage{beamerposter} for the poster
@@ -156,18 +155,49 @@ An example of poster.
 \institute{Saint Petersburg State University}
 \date{2017}
 
-% configure left and right logos and title column widths
-\titlegraphic{%
-    \includegraphics[width=0.7\linewidth]{spbu-CoA}}
-\othergraphic{%
-    \includegraphics[width=0.7\linewidth]{right-logo}}
-\leftcolumnwidth{.2\linewidth}
-\middlecolumnwidth{.6\linewidth}
-\rightcolumnwidth{.2\linewidth}
-
 \begin{document}
 \frame{\titlepage}
 \end{document}
+\end{lstlisting}
+
+\subsection{Usage}
+
+\subsubsection{Theme options}
+
+\DescribeMacro{nologo} Disables display of the university coat of arms in the
+left top corner of the title page.\vspace{\baselineskip}
+
+\noindent\DescribeMacro{poster} Adapts the theme for poster presentation:
+enables section commands, increases font size and changes default font family
+to serif.
+
+\subsubsection{Theme macros}
+
+\DescribeMacro{\titlegraphic}%
+\DescribeMacro{\othergraphic}%
+Defines a code to include in the left (right) top corner of the poster. The
+following code places SPbU logo, bundled with the theme, in both left and right
+corners.
+\begin{lstlisting}
+\titlegraphic{%
+	\includegraphics[width=.7\linewidth]{spbu-CoA}}
+\othergraphic{%
+	\includegraphics[width=.7\linewidth]{spbu-CoA}}
+\end{lstlisting}
+Here the width equals to 70\% of the left (right) column width. Any code can be
+specified instead of just including graphics.
+
+\DescribeMacro{\leftcolumnwidth}%
+\DescribeMacro{\rightcolumnwidth}%
+\DescribeMacro{\middlecolumnwidth}%
+Sets left, right, middle column widths repsectively. The right and left columns
+contain logos and the middle column contains the title, authors and institute
+name. In the following example, the widths are set to 20\%, 60\% and 20\%
+fractions of the total line width.
+\begin{lstlisting}
+\leftcolumnwidth{.2\linewidth}
+\middlecolumnwidth{.6\linewidth}
+\rightcolumnwidth{.2\linewidth}
 \end{lstlisting}
 
 \subsection{License}
