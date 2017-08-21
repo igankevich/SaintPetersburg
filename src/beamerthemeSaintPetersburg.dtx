@@ -1,6 +1,33 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2017 by Ivan Gankevich <igankevich@ya.ru>
+% -------------------------------------------------------
+% 
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later.
+%
+% \fi
+% \iffalse
+%<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeSaintPetersburg}[2016/06/12 Saint Petersburg State University unofficial beamer theme]
-
+\ProvidesPackage{beamerthemeSaintPetersburg}[2017/08/21 SaintPetersburg Beamer theme]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% \fi
+% \subsection{SaintPetersburg theme}
+% Define theme options.
+%    \begin{macrocode}
 \newif\if@spbuPoster
 \newif\if@spbuLogo
 \@spbuPosterfalse
@@ -8,12 +35,17 @@
 \DeclareOption{poster}{\@spbuPostertrue}
 \DeclareOption{nologo}{\@spbuLogofalse}
 \ProcessOptions
+%    \end{macrocode}
 
+% Load corresponding font theme.
+%    \begin{macrocode}
 \mode<presentation>
 
 \usefonttheme{SaintPetersburg}
+%    \end{macrocode}
 
-% inner theme
+% Define slide background template.
+%    \begin{macrocode}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
 \makeatletter%
@@ -47,15 +79,20 @@
 	\fi%
 } 
 \makeatother%
+%    \end{macrocode}
 
-% insert a field using theme colors and font
+% Define helper macro to insert a field using theme colors and font.
+%    \begin{macrocode}
 \newcommand*{\spbuInsertField}[1]{%
 \usebeamerfont{#1}%
 \usebeamercolor[fg]{#1}%
 \expandafter\relax\csname insert#1\endcsname%
 \par%
 }
+%    \end{macrocode}
 
+% Show every field on the title page.
+%    \begin{macrocode}
 \setbeamertemplate{title page}{%
 	\centering%
 	\vspace{0.2\textheight}\spbuInsertField{title}%
@@ -67,42 +104,37 @@
 	\vfill\inserttitlegraphic%
 	\vfill\spbuInsertField{date}%
 }
+%    \end{macrocode}
 
-% horizontal bar colors
-\definecolor{spbuBar1}{HTML}{aa1d21}
-\definecolor{spbuBar2}{HTML}{93a5a7}
-\definecolor{spbuBar3}{HTML}{051014}
-\definecolor{spbuBar4}{HTML}{93a5a7}
-\definecolor{spbuBar5}{HTML}{aa1d21}
-\definecolor{spbuBar6}{HTML}{93a5a7}
-
+% Show simple frame title without a background.
+%    \begin{macrocode}
 \setbeamertemplate{frametitle}{%
 	\spbuInsertField{frametitle}
 	\ifx\insertframesubtitle\empty\else%
 		\spbuInsertField{framesubtitle}
 	\fi%
-%	\begin{tikzpicture}[x=\paperwidth,y=1mm]
-%		\fill[spbuBar1] (0.000,0) rectangle(0.305,1);
-%		\fill[spbuBar2] (0.305,0) rectangle(0.327,1);
-%		\fill[spbuBar3] (0.327,0) rectangle(0.419,1);
-%		\fill[spbuBar4] (0.419,0) rectangle(0.513,1);
-%		\fill[spbuBar5] (0.513,0) rectangle(0.565,1);
-%		\fill[spbuBar6] (0.565,0) rectangle(1.000,1);
-%	\end{tikzpicture}
 }
+%    \end{macrocode}
 
+% Disable navigation symbols.
+%    \begin{macrocode}
 \setbeamertemplate{navigation symbols}{}
 \beamertemplatenavigationsymbolsempty
+%    \end{macrocode}
 
-% black-on-white speaker notes
+% Set black-on-white speaker notes
+%    \begin{macrocode}
 \setbeamertemplate{note page}{%
 	% TODO fix textwidth
 	\begin{minipage}{0.85\paperwidth}%
 		\spbuInsertField{note}%
 	\end{minipage}%
 }
+%    \end{macrocode}
 
-% block
+% Define block environment. Here and in al other blocks we use
+% \texttt{flushright} to properly align columns inside blocks.
+%    \begin{macrocode}
 \setbeamertemplate{block begin}{
 	\vspace{-\baselineskip}%
 	\begin{flushright}
@@ -117,8 +149,10 @@
 		\end{beamercolorbox}
 	\end{flushright}
 }
+%    \end{macrocode}
 
-% alterblock
+% Define alert block environment.
+%    \begin{macrocode}
 \setbeamertemplate{block alerted begin}{
 	\vspace{-\baselineskip}%
 	\begin{flushright}
@@ -133,8 +167,10 @@
 		\end{beamercolorbox}
 	\end{flushright}
 }
+%    \end{macrocode}
 
-% exampleblock
+% Define example block environment.
+%    \begin{macrocode}
 \setbeamertemplate{block example begin}{
 	\vspace{-\baselineskip}%
 	\begin{flushright}
@@ -149,11 +185,15 @@
 		\end{beamercolorbox}
 	\end{flushright}
 }
+%    \end{macrocode}
 
-% QED
+% Define QED symbol
+%    \begin{macrocode}
 \setbeamertemplate{qed symbol}{$\blacksquare$}
+%    \end{macrocode}
 
-% theorem/corollary etc.
+% Theorem/corollary etc. and proof environments are simply blocks.
+%    \begin{macrocode}
 \setbeamertemplate{theorem begin}{%
 	\inserttheoremheadfont%
 	\begin{\inserttheoremblockenv}{%
@@ -170,23 +210,31 @@
 	}%
 }
 \setbeamertemplate{proof end}{\end{\inserttheoremblockenv}}
+%    \end{macrocode}
 
-% remove bibliography item marker
+% Remove bibliography item marker.
+%    \begin{macrocode}
 \setbeamertemplate{bibliography item}{}
+%    \end{macrocode}
 
-% abstract
+% Define abstract template (mainly for poster).
+%    \begin{macrocode}
 \setbeamertemplate{abstract title}{%
 \usebeamerfont{abstract title}%
 \usebeamercolor[fg]{abstract title}%
 \abstractname.%
 }
+%    \end{macrocode}
 
 
-% poster
+% Define additional poster templates.
+%    \begin{macrocode}
 \makeatletter%
 \if@spbuPoster%
+%    \end{macrocode}
 
-% justified abstract
+% Make abstract text justified.
+%    \begin{macrocode}
 \setbeamertemplate{abstract begin}{%
 \begin{minipage}{\linewidth}%
 \justifying%
@@ -194,27 +242,40 @@
 \setbeamertemplate{abstract end}{%
 \end{minipage}%
 }
+%    \end{macrocode}
 
-% new commands for the logo on the right side
+% Define a commands for the logo on the right hand side.
+%    \begin{macrocode}
 \newcommand*{\othergraphic}[1]{\gdef\@othergraphic{#1}}%
 \newcommand*{\@othergraphic}[1]{}%
 \newcommand*{\insertothergraphic}{\@othergraphic{}}%
+%    \end{macrocode}
 
-% left column width
+% Define a command for each headline column width.
+% Left column width.
+%    \begin{macrocode}
 \newcommand*{\leftcolumnwidth}[1]{\gdef\@leftcolumnwidth{#1}}%
 \newcommand*{\@leftcolumnwidth}[1]{.2\linewidth}%
 \newcommand*{\insertleftcolumnwidth}{\@leftcolumnwidth{}}%
+%    \end{macrocode}
 
-% right column width
+% Right column width.
+%    \begin{macrocode}
 \newcommand*{\rightcolumnwidth}[1]{\gdef\@rightcolumnwidth{#1}}%
 \newcommand*{\@rightcolumnwidth}[1]{.2\linewidth}%
 \newcommand*{\insertrightcolumnwidth}{\@rightcolumnwidth{}}%
+%    \end{macrocode}
 
-% middle column width
+% Middle column width.
+%    \begin{macrocode}
 \newcommand*{\middlecolumnwidth}[1]{\gdef\@middlecolumnwidth{#1}}%
 \newcommand*{\@middlecolumnwidth}[1]{.6\linewidth}%
 \newcommand*{\insertmiddlecolumnwidth}{\@middlecolumnwidth{}}%
+%    \end{macrocode}
 
+% Define headline template with three columns: left and right are for logos
+% and a large middle column for the title and the authors.
+%    \begin{macrocode}
 \setbeamertemplate{headline}{%
 	\vskip2cm%
 	\begin{columns}%
@@ -238,7 +299,10 @@
 		\vspace{1cm}%
 	\end{columns}%
 }
+%    \end{macrocode}
 
+% Define footline template with a horizontal line and a short title.
+%    \begin{macrocode}
 \setbeamertemplate{footline}{
 	\vskip2cm%
 	\begin{center}%
@@ -256,7 +320,10 @@
 	\end{center}%
 	\vskip1cm%
 }
+%    \end{macrocode}
 
+% Define section and subsection commands.
+%    \begin{macrocode}
 \renewcommand{\section}[1]{%
 \vskip\baselineskip%
 \begin{center}%
@@ -276,17 +343,26 @@
 \justifying%
 \setlength{\parindent}{1.5cm}%
 }
+%    \end{macrocode}
 
-% numbered bibliography
+% Set numbered bibliography.
+%    \begin{macrocode}
 \setbeamertemplate{bibliography item}[text]
+%    \end{macrocode}
 
+% End of poster-specific definitions.
+%    \begin{macrocode}
 \fi%
 \makeatother%
+%    \end{macrocode}
 
-% color theme
+% Load corresponding color theme.
+%    \begin{macrocode}
 \usecolortheme{SaintPetersburg}
+%    \end{macrocode}
 
-% provide string translations to Russian
+% Provide string translations to Russian.
+%    \begin{macrocode}
 \newtranslation[to=russian]{Part}{Часть}
 \newtranslation[to=russian]{Section}{Раздел}
 \newtranslation[to=russian]{Subsection}{Подраздел}
@@ -301,3 +377,10 @@
 \newtranslation[to=russian]{Examples}{Примеры}
 
 \mode<all>
+%    \end{macrocode}
+
+% \iffalse
+%</package>
+% \fi
+% \Finale
+\endinput
