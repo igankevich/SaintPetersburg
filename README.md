@@ -1,19 +1,16 @@
 # Saint-Petersburg: LaTeX Beamer theme for SPbU
 
-A small theme that incorporates university colours, fonts and CoA from
-[official web-site](http://pr.spbu.ru/).
-
-## Features
-
-- Load university logo corresponding to the selected language.
-- Russian translations for most strings (e.g. Section, Part, Theorem etc.)
-- Proper alignment of multicolumn blocks.
+A small theme that incorporates university colours and fonts from [official
+web-site](http://pr.spbu.ru/).
 
 ## Installation
 
 On Linux type ``make install`` to install everything to standard TeX Live
-locations. Alternatively, just copy all `*.sty`, `*.eps` and `*.otf` files into
-your project directory so that LaTeX can find them.
+locations. Alternatively, just copy all `*.sty` files into your project
+directory so that LaTeX can find them. In order to show university's logo in
+the background of the title slide, you need to download its medium size version
+from [the official
+web-site](http://pr.spbu.ru/images/simvolika/logo/CoA_Medium.eps). 
 
 ## Usage
 

@@ -53,27 +53,15 @@
 	\ifnum\thepage=1\relax%
 		\hspace{\beamer@leftmargin}%
 		\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,dp=0pt]{background canvas}%
-			\begin{tikzpicture}[remember picture,overlay]
-				\if@spbuPoster%
-				\else%
-					% top left CoA
-					\node[anchor=north west] at (current page.north west) {%
-						\hspace*{-2mm}%
-						\if@spbuLogo%
-							\iflanguage{russian}{%
-								\includegraphics[height=0.2\paperheight]{spbu-block-ru}%
-							}{%
-								\includegraphics[height=0.2\paperheight]{spbu-block-en}%
-							}%
-						\fi%
-					};
-				\fi%
+			\begin{tikzpicture}[remember picture,overlay]%
 				% background CoA
 				\node[anchor=south east,opacity=0.1] at (current page.south east) {%
-					\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{spbu-CoA}%
-				};
-			\end{tikzpicture}
-    	\end{beamercolorbox}
+					\IfFileExists{\detokenize{CoA_Medium.eps}}%
+						{\includegraphics[width=0.7\paperwidth,trim=0 55 10 0,clip]{CoA_Medium.eps}}%
+						{}
+				};%
+			\end{tikzpicture}%
+    	\end{beamercolorbox}%
 	\else%
 		\usebeamercolor[bg]{background canvas}\rule{\paperwidth}{\paperheight}%
 	\fi%

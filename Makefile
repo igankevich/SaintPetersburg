@@ -70,9 +70,6 @@ install: sty
 	install -m644 build/beamerfontthemeSaintPetersburg.sty $(THEME_DIR)
 	install -m644 build/beamercolorthemeSaintPetersburg.sty $(THEME_DIR)
 	install -m644 build/SaintPetersburg.pdf $(THEME_DOC_DIR)
-	install -m644 art/spbu-block-en.pdf $(THEME_DIR)
-	install -m644 art/spbu-block-ru.pdf $(THEME_DIR)
-	install -m644 art/spbu-CoA.pdf $(THEME_DIR)
 	mktexlsr
 
 uninstall:
@@ -84,14 +81,12 @@ ctanify: sty doc
 	mkdir -p build/dist
 	cp -rv src/*.dtx src/*.ins build/*.sty \
 		build/SaintPetersburg.pdf \
-		art \
 		README.md \
 		build/dist
 	cd build/dist && \
 	ctanify \
 		--pkgname=$(THEME_NAME) \
 		"SaintPetersburg.pdf" \
-		"art/*.pdf=tex/latex/$(THEME_NAME)" \
 		"SaintPetersburg.ins" \
 		"README.md"
 	mv -v build/dist/$(THEME_NAME).tar.gz build
