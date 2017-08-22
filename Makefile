@@ -15,7 +15,6 @@ INPUTS = $(ROOT)//:
 
 TEXMF_LOCAL_DIR = $(shell kpsewhich --var-value TEXMFLOCAL)
 THEME_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)
-THEME_FONT_DIR = $(TEXMF_LOCAL_DIR)/fonts/opentype/public/$(THEME_NAME)
 THEME_DOC_DIR = $(TEXMF_LOCAL_DIR)/doc/latex/$(THEME_NAME)
 
 all: sty doc demo
@@ -66,7 +65,7 @@ check: install
 	./test
 
 install: sty
-	mkdir -p $(THEME_DIR) $(THEME_FONT_DIR) $(THEME_DOC_DIR)
+	mkdir -p $(THEME_DIR) $(THEME_DOC_DIR)
 	install -m644 build/beamerthemeSaintPetersburg.sty $(THEME_DIR)
 	install -m644 build/beamerfontthemeSaintPetersburg.sty $(THEME_DIR)
 	install -m644 build/beamercolorthemeSaintPetersburg.sty $(THEME_DIR)
@@ -74,13 +73,10 @@ install: sty
 	install -m644 art/spbu-block-en.pdf $(THEME_DIR)
 	install -m644 art/spbu-block-ru.pdf $(THEME_DIR)
 	install -m644 art/spbu-CoA.pdf $(THEME_DIR)
-	install -m644 fonts/OldStandard-Bold.otf $(THEME_FONT_DIR)
-	install -m644 fonts/OldStandard-Italic.otf $(THEME_FONT_DIR)
-	install -m644 fonts/OldStandard-Regular.otf $(THEME_FONT_DIR)
 	mktexlsr
 
 uninstall:
-	rm -rf $(THEME_DIR) $(THEME_FONT_DIR) $(THEME_DOC_DIR)
+	rm -rf $(THEME_DIR) $(THEME_DOC_DIR)
 	mktexlsr
 
 ctanify: sty doc
@@ -88,7 +84,6 @@ ctanify: sty doc
 	mkdir -p build/dist
 	cp -rv src/*.dtx src/*.ins build/*.sty \
 		build/SaintPetersburg.pdf \
-		fonts \
 		art \
 		README.md \
 		build/dist
@@ -98,8 +93,7 @@ ctanify: sty doc
 		"SaintPetersburg.pdf" \
 		"art/*.pdf=tex/latex/$(THEME_NAME)" \
 		"SaintPetersburg.ins" \
-		"README.md" \
-		"fonts/*.otf=fonts/opentype/public/$(THEME_NAME)"
+		"README.md"
 	mv -v build/dist/$(THEME_NAME).tar.gz build
 
 
