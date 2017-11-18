@@ -1,4 +1,4 @@
-# Saint-Petersburg: LaTeX Beamer theme for SPbU
+# Saint-Petersburg: LaTeX/XeLaTeX Beamer theme for SPbU
 
 A small theme that incorporates university colours and fonts from [official
 web-site](http://pr.spbu.ru/).
