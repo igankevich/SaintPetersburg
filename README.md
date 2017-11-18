@@ -5,11 +5,11 @@ web-site](http://pr.spbu.ru/).
 
 ## Installation
 
-On Linux type ``make install`` to install everything to standard TeX Live
-locations. Alternatively, just copy all `*.sty` files into your project
-directory so that LaTeX can find them. In order to show university's logo in
-the background of the title slide, you need to download its medium size version
-from [the official
+On Linux type ``make && make install`` to install everything to standard TeX
+Live locations. Alternatively, just type ``make`` and copy all `*.sty` files
+from build directory into your project directory so that LaTeX can find them.
+In order to show university's logo in the background of the title slide, you
+need to download its medium size version from [the official
 web-site](http://pr.spbu.ru/images/simvolika/logo/CoA_Medium.eps). 
 
 ## Usage
