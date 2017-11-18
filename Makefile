@@ -28,7 +28,7 @@ build/beamerthemeSaintPetersburg.sty \
 doc: build/SaintPetersburg.pdf
 
 demo:
-	$(MAKE) -C demos/slides
+	$(MAKE) -C demo/slides
 
 build/beamercolorthemeSaintPetersburg.sty \
 build/beamerfontthemeSaintPetersburg.sty \
@@ -74,7 +74,7 @@ ctanify: sty doc
 		build/SaintPetersburg.pdf \
 		README.md \
 		build/$(THEME_NAME)
-	cp -v demos/slides/build/slides-16-arma.pdf \
+	cp -v demo/slides/build/slides-16-arma.pdf \
 		build/$(THEME_NAME)/example.pdf
 	cd build && \
 	tar czvf $(THEME_NAME).tar.gz $(THEME_NAME)
