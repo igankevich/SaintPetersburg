@@ -27,7 +27,8 @@ build/beamerthemeSaintPetersburg.sty \
 	
 doc: build/SaintPetersburg.pdf
 
-demo: build/slides.pdf build/poster.pdf
+demo:
+	$(MAKE) -C demos/slides
 
 build/beamercolorthemeSaintPetersburg.sty \
 build/beamerfontthemeSaintPetersburg.sty \
@@ -39,25 +40,6 @@ build/SaintPetersburg.pdf: src/*.dtx
 	(cd src && \
 		TTFONTS=$(INPUTS) OPENTYPEFONTS=$(INPUTS) \
 		xelatex -output-directory=$(ROOT)/build SaintPetersburg.dtx)
-
-
-build/slides.pdf: build
-build/slides.pdf: demos/slides.tex demos/refs.bib
-build/slides.pdf: export TEXINPUTS=$(INPUTS)
-build/slides.pdf: export BIBINPUTS=$(INPUTS)
-build/slides.pdf: export TTFONTS=$(INPUTS)
-build/slides.pdf: export OPENTYPEFONTS=$(INPUTS)
-build/slides.pdf:
-	(cd demos && $(LATEXMK) $(LATEXMK_FLAGS) -jobname=slides slides.tex)
-
-build/poster.pdf: build
-build/slides.pdf: demos/poster.tex demos/refs.bib
-build/poster.pdf: export TEXINPUTS=$(INPUTS)
-build/poster.pdf: export BIBINPUTS=$(INPUTS)
-build/poster.pdf: export TTFONTS=$(INPUTS)
-build/poster.pdf: export OPENTYPEFONTS=$(INPUTS)
-build/poster.pdf:
-	(cd demos && $(LATEXMK) $(LATEXMK_FLAGS) -jobname=poster poster.tex)
 
 build:
 	mkdir build
@@ -92,8 +74,14 @@ ctanify: sty doc
 		build/SaintPetersburg.pdf \
 		README.md \
 		build/$(THEME_NAME)
+	cp -v demos/slides/build/slides-16-arma.pdf \
+		build/$(THEME_NAME)/example.pdf
 	cd build && \
 	tar czvf $(THEME_NAME).tar.gz $(THEME_NAME)
+
+ctanupload:
+	CTAN_EMAIL=$(pass show email) \
+	ctanupload -F ctanupload.conf
 
 clean:
 	rm -rf build
