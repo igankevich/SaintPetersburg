@@ -1,4 +1,4 @@
-THEME_NAME = SaintPetersburg
+THEME_NAME = beamertheme-saintpetersburg
 LATEXMK = latexmk
 LATEXMK_FLAGS = \
 	-interaction=nonstopmode \
@@ -15,7 +15,8 @@ INPUTS = $(ROOT)//:
 
 TEXMF_LOCAL_DIR = $(shell kpsewhich --var-value TEXMFLOCAL)
 THEME_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)
-THEME_DOC_DIR = $(TEXMF_LOCAL_DIR)/doc/latex/$(THEME_NAME)
+
+BEAMER_THEMES_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/beamer/themes
 
 all: sty doc demo
 
@@ -65,32 +66,34 @@ check: install
 	./test
 
 install: sty
-	mkdir -p $(THEME_DIR) $(THEME_DOC_DIR)
-	install -m644 build/beamerthemeSaintPetersburg.sty $(THEME_DIR)
-	install -m644 build/beamerfontthemeSaintPetersburg.sty $(THEME_DIR)
-	install -m644 build/beamercolorthemeSaintPetersburg.sty $(THEME_DIR)
-	install -m644 build/SaintPetersburg.pdf $(THEME_DOC_DIR)
+	mkdir -p \
+		$(THEME_DIR) \
+		$(BEAMER_THEMES_DIR)/theme \
+		$(BEAMER_THEMES_DIR)/font \
+		$(BEAMER_THEMES_DIR)/color
+	install -m644 build/beamerthemeSaintPetersburg.sty $(BEAMER_THEMES_DIR)/theme
+	install -m644 build/beamerfontthemeSaintPetersburg.sty $(BEAMER_THEMES_DIR)/font
+	install -m644 build/beamercolorthemeSaintPetersburg.sty $(BEAMER_THEMES_DIR)/color
+	install -m644 build/SaintPetersburg.pdf $(THEME_DIR)
 	mktexlsr
 
 uninstall:
-	rm -rf $(THEME_DIR) $(THEME_DOC_DIR)
+	rm -rfv $(THEME_DIR)
+	rm -fv \
+		$(BEAMER_THEMES_DIR)/theme/beamerthemeSaintPetersburg.sty \
+		$(BEAMER_THEMES_DIR)/font/beamerfontthemeSaintPetersburg.sty \
+		$(BEAMER_THEMES_DIR)/color/beamercolorthemeSaintPetersburg.sty
 	mktexlsr
 
 ctanify: sty doc
-	rm -rf build/dist
-	mkdir -p build/dist
-	cp -rv src/*.dtx src/*.ins build/*.sty \
+	rm -rf build/$(THEME_NAME)
+	mkdir -p build/$(THEME_NAME)
+	cp -rv src/*.dtx \
 		build/SaintPetersburg.pdf \
 		README.md \
-		build/dist
-	cd build/dist && \
-	ctanify \
-		--pkgname=$(THEME_NAME) \
-		"SaintPetersburg.pdf" \
-		"SaintPetersburg.ins" \
-		"README.md"
-	mv -v build/dist/$(THEME_NAME).tar.gz build
-
+		build/$(THEME_NAME)
+	cd build && \
+	tar czvf $(THEME_NAME).tar.gz $(THEME_NAME)
 
 clean:
 	rm -rf build
