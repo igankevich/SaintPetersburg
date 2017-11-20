@@ -18,7 +18,7 @@ THEME_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/$(THEME_NAME)
 
 BEAMER_THEMES_DIR = $(TEXMF_LOCAL_DIR)/tex/latex/beamer/themes
 
-all: sty doc demo
+all: sty doc example
 
 sty: \
 build/beamercolorthemeSaintPetersburg.sty \
@@ -27,7 +27,7 @@ build/beamerthemeSaintPetersburg.sty \
 	
 doc: build/SaintPetersburg.pdf
 
-demo:
+example:
 	$(MAKE) -C demo/slides
 
 build/beamercolorthemeSaintPetersburg.sty \
@@ -85,3 +85,4 @@ ctanupload:
 
 clean:
 	rm -rf build
+	$(MAKE) -C demo/slides clean

@@ -8,7 +8,7 @@ cat >$workdir/mwe.tex << 'EOF'
 \title{Saint Petersburg \LaTeX~Beamer theme}
 \author{Ivan Gankevich}
 \institute{Saint Petersburg State University}
-\date{2017}
+\date{20 Nov 2017}
 \begin{document}
 \frame{\titlepage}
 \end{document}

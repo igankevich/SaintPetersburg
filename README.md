@@ -59,4 +59,4 @@ latexmk -pdf example.tex           # LaTeX
 
 ## License
 
-LaTeX Project Public License 1.3 or later.
+LaTeX Project Public License 1.3c or later.
