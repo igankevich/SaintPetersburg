@@ -74,8 +74,10 @@ ctanify: sty doc
 		build/SaintPetersburg.pdf \
 		README.md \
 		build/$(THEME_NAME)
-	cp -v demo/slides/build/slides-16-arma.pdf \
-		build/$(THEME_NAME)/example.pdf
+	cp -rv demo/slides/build/example.pdf \
+		demo/slides/example.tex \
+		demo/slides/figures \
+		build/$(THEME_NAME)
 	cd build && \
 	tar czvf $(THEME_NAME).tar.gz $(THEME_NAME)
 
