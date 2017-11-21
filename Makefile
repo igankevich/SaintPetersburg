@@ -70,7 +70,7 @@ uninstall:
 ctanify: sty doc
 	rm -rf build/$(THEME_NAME)
 	mkdir -p build/$(THEME_NAME)
-	cp -rv src/*.dtx \
+	cp -rv src/*.dtx src/*.ins \
 		build/SaintPetersburg.pdf \
 		README.md \
 		build/$(THEME_NAME)
