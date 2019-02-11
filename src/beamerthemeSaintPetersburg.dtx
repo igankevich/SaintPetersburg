@@ -30,10 +30,13 @@
 %    \begin{macrocode}
 \newif\if@spbuPoster
 \newif\if@spbuLogo
+\newif\if@spbuNumbers
 \@spbuPosterfalse
 \@spbuLogotrue
+\@spbuNumbersfalse
 \DeclareOption{poster}{\@spbuPostertrue}
 \DeclareOption{nologo}{\@spbuLogofalse}
+\DeclareOption{numbers}{\@spbuNumberstrue}
 \ProcessOptions
 %    \end{macrocode}
 
@@ -104,10 +107,25 @@
 }
 %    \end{macrocode}
 
-% Disable navigation symbols.
+% Show frame numbers if "numbers" options is set, otherwise
+% remove navigation symbols.
 %    \begin{macrocode}
-\setbeamertemplate{navigation symbols}{}
-\beamertemplatenavigationsymbolsempty
+\makeatletter%
+\if@spbuNumbers%
+	\setbeamertemplate{navigation symbols}{%
+		\ifnum\thepage=1\relax%
+		\else%
+		    \usebeamerfont{footline}%
+		    \usebeamercolor[fg]{normal text}%
+		    \hfill%
+		    \insertframenumber/\inserttotalframenumber%
+		\fi%
+	}
+\else%
+	\setbeamertemplate{navigation symbols}{}
+	\beamertemplatenavigationsymbolsempty
+\fi%
+\makeatother%
 %    \end{macrocode}
 
 % Set black-on-white speaker notes
