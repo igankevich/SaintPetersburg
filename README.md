@@ -57,6 +57,18 @@ latexmk -pdf -xelatex example.tex  # XeTeX
 latexmk -pdf example.tex           # LaTeX
 ```
 
+## Dependencies
+
+SaintPetersburg uses the following TeX packages. Make sure to install them on your computer.
+```
+FiraMono
+fontspec
+graphicx
+ifxetex
+opensans
+tikz
+```
+
 ## License
 
 LaTeX Project Public License 1.3c or later.
